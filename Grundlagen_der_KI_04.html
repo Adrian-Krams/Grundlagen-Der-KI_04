@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <title>Blatt 04 – DTL</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      line-height: 1.5;
+      background: #fafafa;
+      color: #222;
+    }
+    header {
+      border-bottom: 1px solid #aaa;
+      padding-bottom: 10px;
+      margin-bottom: 25px;
+    }
+    header h1 {
+      font-size: 18px;
+      margin: 0;
+      font-weight: normal;
+    }
+    header p {
+      font-size: 14px;
+      margin: 4px 0 0 0;
+      font-weight: normal;
+    }
+    section {
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 15px;
+      margin-bottom: 20px;
+      white-space: pre-wrap;
+    }
+    h2 {
+      font-size: 16px;
+      font-weight: bold;
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Blatt 04 – DTL</h1>
+    <p>Modul: Grundlagen der KI — Gruppe: Amar Semmo, Adrian Kramkowski, Abdelhadi Fares, Yousef Al Sahli und Abdelraoof Sahli</p>
+  </header>
+
+  <section>
+    <h2>Aufgabe 1</h2>
+    Hands simulation  
+    CAL3-BAUM (S1 = 4, S2, 0,7):
+
+Einkommen?
+- hoch -> O
+- niedrig ->
+    Alter?
+        - >= 35 - M
+        - < 35 ->
+            Bildung ?
+                - Master -> O
+                - Abitur -> M
+
+Als erstes wird das Attribut Einkommen berücksichtigt, weil es die Daten am besten trennt. 
+Darauf wird in der Ebene niedrig Alter und Bildung betrachtet, um eine ausreichende Reinheit von ≥ 70% zu erreichen.
+
+ID3-Baum  
+Einkommen?
+- hoch -> O
+- niedrig ->
+    Bildung ?
+        - Master -> O
+        - Abitur -> M
+
+ID3 nutzt den Informationsgewinn. Einkommen liefert den größten Gewinn und wird als erstes gewählt. 
+Danach kommt Bildung und trennt die restlichen Beispiele.
+
+Fazit  
+Beide Verfahren kommen zu ähnlichen Ergebnissen:
+Wähler mit hohem Einkommen → O  
+Niedriges Einkommen → oft M, nur mit Master O
+  </section>
+
+  <section>
+    <h2>Aufgabe 2</h2>
+    Gegeben ist der Baum:  
+x3(x2(x1(C,A), x1(B,A)), x1(x2(C,B), A))
+
+Vereinfachung  
+1. Transformationsregel:  
+   Aus x3(x2(x1(C,A), x1(B,A)), x1(x2(C,B), A))  
+   folgt x3(x1(x2(C,B), A), x1(x2(C,B), A))  
+2. Pruning-Regel:  
+   Aus x3(x1(x2(C,B), A), x1(x2(C,B), A))  
+   folgt x1(x2(C,B), A)
+
+Endergebnis: x1(x2(C,B), A)
+  </section>
+
+  <section>
+    <h2>Aufgabe 3</h2>
+    1. Für zoo.csv und Restaurant.csv wurde mit J48 der Entscheidungsbaum-Lerner ausgewählt und mit der Option "Use Training set" gestartet.
+
+Zoo-Datensatz: Der Baum trennt die Tiere größtenteils nach milk, feathers und legs. 
+Die Fehlerrate war bei 0%, da alle 101 Tiere korrekt zugeteilt wurden.
+
+Restaurant-Datensatz: Der Baum nutzt häufig Patrons und Price, mit einer Fehlerrate bei ca. 5%. 
+Es gab nur sehr wenige Fälle, die falsch zugeordnet wurden.
+
+Also: Der J48-Algorithmus macht relativ stabile und lesbare Entscheidungsbäume.
+
+2.  
+Nominal: feste Kategorien, z. B. {JA, NEIN} oder {ROT, BLAU, GRÜN}  
+Ordinal/Numeric: numerische oder geordnete Werte, z. B. 0–100 oder klein < mittel < groß  
+String: beliebiger Text ohne feste Kategorie
+
+Wenn man die CSV-Dateien in ARFF konvertiert, entstehen .arff-Dateien, die Attributtypen im Header und die Daten in normaler Form enthalten.
+
+3.  
+Zoo.arff hatte mit J48 und ID3 jeweils die Fehlerrate 0 % bzw. ~10 %.  
+Restaurant.arff hatte ~5 % und ~15 %.
+
+J48 arbeitet mit Pruning, ist dadurch kompakter und robuster gegen Überanpassung.  
+ID3 erzeugt deutlich größere Bäume (kein Pruning) und hatte höhere Fehlerraten.  
+Die CSV- und ARFF-Dateien lieferten identische Ergebnisse.
+  </section>
+
+</body>
+</html>
